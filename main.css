@@ -1,0 +1,58 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+body {
+	background: #F5F5F5;
+	color: #333;
+	font-family: arial, sans-serif;
+}
+a {
+	color: #6BF;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+.clear {
+	clear: both;
+}
+.hover {
+	cursor: pointer;
+}
+#main {
+	width: 800px;
+	margin: 0 auto;
+}
+#title {
+	text-align: center;
+	margin: 15px;
+	font-size: 20px;
+}
+#search {
+	text-align: center;
+	margin: 10px;
+}
+
+.dark {
+	background: #999;
+	color: #EEE;
+}
+.light {
+	background: inherit;
+	color: inherit;
+}
+
+.head {
+	text-transform: uppercase;
+	font-size: 18px;
+}
+
+.dvd {
+	width: 150px;
+	float: left;
+	padding: 5px;
+}
+.wide {
+	width: 300px;
+}
