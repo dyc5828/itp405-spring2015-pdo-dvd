@@ -1,11 +1,10 @@
-<?php //results.php
+<?php //ratings.php
 
-if(!isset($_GET['title'])) {
+if(!isset($_GET['rating'])) {
 	header('Location: search.php');
 }
 
-$title = $_GET['title'];
-// echo $title;
+$rating = $_GET['rating'];
 
 const HOST = 'itp460.usc.edu';
 const DB = 'dvd';
@@ -23,14 +22,12 @@ $sql = "
 	ON dvds.format_id = formats.id
 	INNER JOIN ratings
 	ON dvds.rating_id = ratings.id
-	WHERE title LIKE ?
+	WHERE rating_name = ?
 ";
-
-$like = '%'.$title.'%';
 
 $statement = $pdo->prepare($sql);
 
-$statement->bindParam(1, $like);
+$statement->bindParam(1, $rating);
 
 $statement->execute();
 $dvds = $statement->fetchAll(PDO::FETCH_OBJ);
@@ -43,7 +40,7 @@ $count = 1;
 
 <html>
 <head>
-	<title></title>
+	<title>Rating: <?=$rating?></title>
 	<link rel="stylesheet" type="text/css" href="main.css">
 
 </head>
@@ -52,18 +49,8 @@ $count = 1;
 
 	<div id="title">DVD Search with PDO</div>
 
-<?php  if($empty == 1): ?>
-
 	<div id="search">
-		Nothing found for "<?=$title?>"
-		<br>
-		<a href="search.php">Back to Search</a>
-	</div>
-
-<?php else: ?>
-
-	<div id="search">
-		You searched for "<?=$title?>"
+		All dvds with rating: "<?=$rating?>"
 		<br>
 		<a href="search.php">Back to Search</a>
 	</div>
@@ -85,7 +72,7 @@ $count = 1;
 	</div> <!--div.row-->
 
 <?php foreach($dvds as $dvd) : ?>
-	<div class="row <?=$state[$count % 2] ?>">
+	<div class="row <?=$state[$count % 2]?>">
 		<div class="dvd wide">
 			<?=$dvd->title?>
 		</div>
@@ -102,7 +89,6 @@ $count = 1;
 	</div> <!--div.row-->
 <?php $count++; ?>
 <?php endforeach; ?>
-<?php endif ?>
 
 </div> <!--div#main-->
 </body>
